@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>MAXONIFY-BUDGET-FORM</title>
+    <link rel="shortcut icon" href="assets/images/even_brighter_logo.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/form-3.css">
+    <link rel="stylesheet" href="assets/faqs.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="third-card">
+            <div class="d-flex justify-content-between align-items-center">
+                <img src="assets/images/logo.jpg" class="w-25" alt="">
+                <img src="/assets/images/icone-3.png" alt="icone-3" class="img-fluid"
+                    style="width: 30px; height: auto;">
+                <small class="text-muted">3 / 4</small>
+                <div class="close fs-5">&times;</div>
+            </div>
+            <hr class="border-2 border-dark">
+            <div class="mb-4">
+                <h2 class="h3 fw-bold fs-2">Tell us about your budget and timeline</h2>
+                
+                <!-- Budget Section -->
+                <label for="budget" class="form-label mt-3">Approximate Budget</label>
+                <div class="value d-flex justify-content-end fw-bold" id="budget-value">5k - 100k+</div>
+                <div class="slider-container d-flex align-items-center">
+                    <input type="range" id="budget" class="form-range" min="5" max="100000" value="5">
+                </div>
+                <input type="text" class="form-control  border-2 border-dark fw-bold mt-2" id="budget-input"
+                    value="5k - 100k+" readonly>
+                
+                <!-- Timeline Section -->
+                <label for="timeline" class="form-label mt-3">Estimated Timeline</label>
+                <div class="value d-flex justify-content-end fw-bold" id="timeline-value">Under 2 Weeks</div>
+                <div class="slider-container">
+                    <input type="range" id="timeline" class="form-range" min="1" max="8" value="1">
+                </div>
+                <input type="text" class="form-control  border-2 border-dark mt-2 fw-bold" id="timeline-input"
+                    value="Under 2 Weeks" readonly>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="./form-2.html" class="text-decoration-none text-secondary">Back</a>
+                <a href="./form-4.html" class="btn btn-primary rounded-pill px-4 fw-bold">Continue</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const budgetSlider = document.getElementById('budget');
+        const budgetValue = document.getElementById('budget-value');
+        const budgetInput = document.getElementById('budget-input');
+
+        const timelineSlider = document.getElementById('timeline');
+        const timelineValue = document.getElementById('timeline-value');
+        const timelineInput = document.getElementById('timeline-input');
+
+        // Update budget values and slider fill
+        budgetSlider.addEventListener('input', () => {
+            const budget = budgetSlider.value;
+            const percentage = (budget / 100000) * 100; // Adjust percentage calculation
+            budgetValue.textContent = `${(budget / 1000).toFixed(0)}k - 100k+`;
+            budgetInput.value = `${(budget / 1000).toFixed(0)}k - 100k+`;
+            budgetSlider.style.background = `linear-gradient(to right, #0d6efd ${percentage}%, #ddd ${percentage}%)`;
+        });
+
+        // Update timeline values and slider fill
+        timelineSlider.addEventListener('input', () => {
+            const timeline = timelineSlider.value;
+            const percentage = ((timeline - 1) / (8 - 1)) * 100;
+            timelineValue.textContent = `Under ${timeline} Week${timeline > 1 ? 's' : ''}`;
+            timelineInput.value = `Under ${timeline} Week${timeline > 1 ? 's' : ''}`;
+            timelineSlider.style.background = `linear-gradient(to right, #343a40 ${percentage}%, #ddd ${percentage}%)`;
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
